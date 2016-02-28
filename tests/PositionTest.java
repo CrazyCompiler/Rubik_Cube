@@ -2,10 +2,6 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-
-/**
- * Created by virajpa on 26/02/16.
- */
 public class PositionTest {
     @Test
     public void test_getBlock() {

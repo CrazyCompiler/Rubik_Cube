@@ -1,9 +1,4 @@
-/**
- * Created by virajpa on 26/02/16.
- * position is the fixed x and y poisitions.
- * It stores a block in it.
- * This block chnges according to moves.
- */
+
 public class Position {
     private int x;
     private int y;

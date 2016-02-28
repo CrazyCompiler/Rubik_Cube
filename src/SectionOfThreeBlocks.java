@@ -1,7 +1,4 @@
-/**
- * Created by viraj on 26/02/16.
- * Section is collection of three blocks that moves both horizontal,vertical.
- */
+
 public class SectionOfThreeBlocks {
     private String sectionPosition;
     private Position firstBlock;
@@ -33,6 +30,16 @@ public class SectionOfThreeBlocks {
 
     public boolean hasBlocks(Block firstBlock, Block secondBlock, Block thirdBlock) {
         return (this.firstBlock.getBlock() == firstBlock && this.secondBlock.getBlock() == secondBlock && this.thirdBlock.getBlock() == thirdBlock);
+    }
+
+    public String getPosition(){
+        return this.sectionPosition;
+    }
+
+    public String toString(){
+        return this.firstBlock.getBlock().toString()+","
+                +this.secondBlock.getBlock().toString()+","+
+                this.thirdBlock.getBlock()+"@"+this.sectionPosition;
     }
 
 }
