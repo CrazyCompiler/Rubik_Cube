@@ -1,8 +1,40 @@
 import org.junit.Test;
 
+import java.util.HashMap;
+
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class faceTest {
+
+    @Test
+    public void testGetSection_provides_section(){
+        Face fontFace = new Face("red","fontFace");
+        SectionOfThreeBlocks section = fontFace.getSection("horizontalTop");
+        assertEquals("horizontalTop",section.getPosition());
+        assertEquals("red,red,red@horizontalTop",section.toString());
+    }
+
+    @Test
+    public void testGetFaceName() throws Exception {
+        Face fontFace = new Face("red","fontFace");
+        assertEquals("fontFace",fontFace.getName());
+    }
+
+    @Test
+    public void testGetAdjacentFaces() throws Exception {
+        Face firstFace = new Face("red","fontFace");
+        Face horizontalNext = new Face("green","secondFace");
+        Face horizontalPrevious = new Face("blue","thirdFace");
+        Face verticalNext = new Face("orange","thirdFace");
+        Face verticalPrevious = new Face("white","thirdFace");
+        firstFace.addAdjacentFaces(horizontalPrevious,horizontalNext,verticalPrevious,verticalNext);
+        HashMap <String,Face> providedAdjacentFaces = firstFace.getAdjacentFaces();
+        assertEquals(providedAdjacentFaces.get("horizontalPrevious"),horizontalPrevious);
+        assertEquals(providedAdjacentFaces.get("horizontalNext"),horizontalNext);
+        assertEquals(providedAdjacentFaces.get("verticalPrevious"),verticalPrevious);
+        assertEquals(providedAdjacentFaces.get("verticalNext"),verticalNext);
+    }
 
     @Test
     public void test_alterSection_which_alter_top_section(){
@@ -20,7 +52,7 @@ public class faceTest {
         Position p9 = new Position(2,2,blk2);
 
         SectionOfThreeBlocks horizontalTop = new SectionOfThreeBlocks("horizontalTop",p1,p2,p3);
-        Face fontFace = new Face("red");
+        Face fontFace = new Face("red","fontFace");
         fontFace.alterSection(horizontalTop);
 
         SectionOfThreeBlocks horizontalMiddle = new SectionOfThreeBlocks("horizontalMiddle",p4,p5,p6);
@@ -52,7 +84,7 @@ public class faceTest {
         Position p9 = new Position(2,2,blk2);
 
         SectionOfThreeBlocks verticalLeft = new SectionOfThreeBlocks("verticalLeft",p1,p4,p7);
-        Face fontFace = new Face("red");
+        Face fontFace = new Face("red","fontFace");
         fontFace.alterSection(verticalLeft);
 
         SectionOfThreeBlocks horizontalTop = new SectionOfThreeBlocks("horizontalTop",p1,p2,p3);

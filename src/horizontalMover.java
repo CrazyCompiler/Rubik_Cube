@@ -10,7 +10,8 @@ public class HorizontalMover implements movers{
     }
 
     public void clockWiseMovement(String faceName, String sectionName){
-        System.out.println(this.allFaces.get(faceName));
+        Face currentFace = this.allFaces.get(faceName);
+
     }
     public void antiClockWiseMovement(String faceName,String sectionName){
 

@@ -2,9 +2,14 @@ import java.util.HashMap;
 
 public class Face {
 
+    private String name;
     private HashMap<String, SectionOfThreeBlocks> allSection = new HashMap<String, SectionOfThreeBlocks>();
+    private Face horizontalNext;
+    private Face horizontalPrevious;
+    private Face verticalNext;
+    private Face verticalPrevious;
 
-    public Face(String color) {
+    public Face(String color, String name) {
         Block blk = new Block(color);
         Position p1 = new Position(0, 0, blk);
         Position p2 = new Position(0, 1, blk);
@@ -21,6 +26,7 @@ public class Face {
         this.allSection.put("verticalLeft", new SectionOfThreeBlocks("verticalLeft", p1, p4, p7));
         this.allSection.put("verticalCenter", new SectionOfThreeBlocks("verticalCenter", p2, p5, p8));
         this.allSection.put("verticalRight", new SectionOfThreeBlocks("verticalRight", p3, p6, p9));
+        this.name = name;
     }
 
     public void alterSection(SectionOfThreeBlocks givenSection) {
@@ -33,8 +39,32 @@ public class Face {
         return (sectionToCheck.toString().equals(givenSection.toString()));
     }
 
-    public String toString(){
-        return this.allSection.toString();
+    public SectionOfThreeBlocks getSection(String sectionName) {
+        return this.allSection.get(sectionName);
+    }
+
+    public void addAdjacentFaces(Face horizontalPrevious, Face horizontalNext, Face verticalPrevious, Face verticalNext) {
+        this.horizontalNext = horizontalNext;
+        this.horizontalPrevious = horizontalPrevious;
+        this.verticalNext = verticalNext;
+        this.verticalPrevious = verticalPrevious;
+    }
+
+    public HashMap<String, Face> getAdjacentFaces() {
+            HashMap<String, Face> adjacentFaces = new HashMap<String, Face>();
+        adjacentFaces.put("horizontalNext", this.horizontalNext);
+        adjacentFaces.put("horizontalPrevious", this.horizontalPrevious);
+        adjacentFaces.put("verticalNext", this.verticalNext);
+        adjacentFaces.put("verticalPrevious", this.verticalPrevious);
+        return adjacentFaces;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public String toString() {
+        return this.name;
     }
 
 }

@@ -9,14 +9,17 @@ public class HorizontalMoverTest {
     @Test
     public void test_move_which_moves_sections_clockwise(){
         HashMap<String, Face> allFaces = new HashMap<String, Face>();
-        allFaces.put("firstFace", new Face("red"));
-        allFaces.put("secondFace", new Face("green"));
-        allFaces.put("thirdFace", new Face("yellow"));
-        allFaces.put("fourthFace", new Face("blue"));
-        allFaces.put("fifthFace", new Face("white"));
-        allFaces.put("sixthFace", new Face("orange"));
+        allFaces.put("firstFace", new Face("red","font"));
+        allFaces.put("secondFace", new Face("green","right"));
+        allFaces.put("thirdFace", new Face("yellow","left"));
+        allFaces.put("fourthFace", new Face("blue","back"));
+        allFaces.put("fifthFace", new Face("white","top"));
+        allFaces.put("sixthFace", new Face("orange","bottom"));
+        AdjacentFacesSetter setter = new AdjacentFacesSetter(allFaces);
+        setter.setAdjacentFaces();
         HorizontalMover horizontalMover = new HorizontalMover(allFaces);
         horizontalMover.clockWiseMovement("firstFace","horizontalTop");
+
 
     }
 
